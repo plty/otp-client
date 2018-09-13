@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
-from time import time
-from termcolor import colored
 import sys
-from pyotp import random_base32, TOTP
 from collections import OrderedDict
+from termcolor import colored
+from time import time
+from pyotp import random_base32, TOTP
+from pyperclip import copy
 
 users = OrderedDict()
-
 users["dev:jrl"] = ("RRVB2WGWZK4UXHC6", "NuMoney-Dev", "jerrell@numoney.store")
 
 cur_time = time()
@@ -17,10 +17,14 @@ def token_print(secret, n):
     for i in range(n):
         totp = TOTP(secret)
         token = totp.at(cur_time, i)
-        token = token[:3] + '-' + token[3:6]
+        token_formatted = token[:3] + '-' + token[3:]
         if (i == preferred_offset):
-            token = colored(token, "green")
-        print(token)
+            token = colored(token_formatted, "green")
+            try: 
+                copy(token)
+            except Exception as e:
+                pass
+        print(token_formatted)
 
 def main(argv):
     print("Time Left:", time_left, "second(s)")
