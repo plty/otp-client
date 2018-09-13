@@ -19,7 +19,7 @@ def token_print(secret, n):
         token = totp.at(cur_time, i)
         token_formatted = token[:3] + '-' + token[3:]
         if (i == preferred_offset):
-            token = colored(token_formatted, "green")
+            token_formatted = colored(token_formatted, "green")
             try: 
                 copy(token)
             except Exception as e:
