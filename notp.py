@@ -7,7 +7,7 @@ from pyotp import random_base32, TOTP
 from pyperclip import copy
 
 users = OrderedDict()
-users["dev:jrl"] = ("RRVB2WGWZK4UXHC6", "NuMoney-Dev", "jerrell@numoney.store")
+users["dev:jrl"] = ("RRVB2WGWZK4UXHC6", "some-website", "john@example.com")
 
 cur_time = time()
 time_left = 30 - int(cur_time % 30);
